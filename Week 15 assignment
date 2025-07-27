@@ -1,0 +1,272 @@
+QNT 102: Week 15 Assignment – Inferential Statistics Applications
+
+
+---
+
+Case 1: Hypothesis Testing with Two Samples
+
+Data
+
+Campaign	n	Mean	Std Dev
+
+A	100	7.5	1.5
+B	100	8.0	1.7
+
+
+Step 1: State the Hypotheses
+
+H₀: μ₁ = μ₂ (no difference)
+
+H₁: μ₁ ≠ μ₂ (there is a difference)
+
+
+Step 2: Test Statistic
+
+Using a two-sample z-test (n ≥ 30):
+
+z = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} = \frac{7.5 - 8.0}{\sqrt{\frac{1.5^2}{100} + \frac{1.7^2}{100}}} = \frac{-0.5}{\sqrt{0.0225 + 0.0289}} = \frac{-0.5}{\sqrt{0.0514}} = \frac{-0.5}{0.2268} ≈ -2.204
+
+Step 3: p-Value
+
+Using the z-table:
+
+p-value ≈ 2 * P(Z < -2.204) ≈ 2 * 0.0138 = 0.0276
+
+
+Step 4: Conclusion
+
+α = 0.05
+
+Since p = 0.0276 < 0.05, reject H₀.
+
+
+Implication
+
+Campaign B performs significantly better than Campaign A in influencing customers’ purchase intent.
+
+
+---
+
+Case 2: Chi-Square Test for Independence
+
+Observed Table
+
+Major	Car	Bicycle	Public
+
+Business	50	20	30
+Science	30	30	40
+Total	80	50	70
+
+
+Step 1: Hypotheses
+
+H₀: No association between major and transport mode.
+
+H₁: There is an association.
+
+
+Step 2: Expected Counts
+
+E = \frac{\text{Row Total} \times \text{Column Total}}{\text{Grand Total}} = \frac{100 \times 80}{200} = 40 \text{ (Car for Business)}
+
+(Compute for all 6 cells)
+
+Major	Car	Bicycle	Public
+
+Business	40	25	35
+Science	40	25	35
+
+
+Step 3: Chi-Square Formula
+
+\chi^2 = \sum \frac{(O - E)^2}{E} = \frac{(50-40)^2}{40} + \frac{(20-25)^2}{25} + ... = 2.5 + 1 + 0.714 + 2.5 + 1 + 0.714 = 8.428
+
+Step 4: df & Critical Value
+
+df = (2-1)(3-1) = 2
+
+Critical value at 1%: 9.21
+
+
+Since 8.428 < 9.21, we fail to reject H₀.
+
+p-value ≈ 0.015
+
+Conclusion
+
+No significant association at 1% level.
+
+Limitations & Recommendations
+
+Limitations:
+
+Limited to two majors only (low generalizability).
+
+Self-reported data may have bias.
+
+
+Recommendations:
+
+Include more majors for broader insight.
+
+Consider other variables like distance from campus or income.
+
+
+
+
+---
+
+Case 3: One-Way ANOVA (F-Distribution)
+
+Scores
+
+Method 1	Method 2	Method 3
+
+85, 78, 90, 82, 87	88, 82, 85, 80, 86	92, 89, 95, 90, 93
+
+
+Step 1: Hypotheses
+
+H₀: μ₁ = μ₂ = μ₃
+
+H₁: At least one mean is different.
+
+
+Step 2: ANOVA Summary
+
+Mean₁ = 84.4, Mean₂ = 84.2, Mean₃ = 91.8
+
+SST (between) ≈ 438.53
+
+SSE (within) ≈ 213.6
+
+df₁ = 2, df₂ = 12
+
+MSB = 219.27
+
+MSW = 17.8
+
+F = MSB / MSW = 219.27 / 17.8 ≈ 12.32
+
+
+Step 3: Critical Value
+
+F-critical (df1 = 2, df2 = 12) at α = 0.05 ≈ 3.89
+
+Since 12.32 > 3.89, reject H₀.
+
+
+Conclusion
+
+There is a significant difference between the teaching methods.
+
+Further Tests
+
+Use Tukey’s HSD or Bonferroni correction to identify which methods differ.
+
+Recommendation
+
+Method 3 (highest mean = 91.8) appears most effective.
+
+
+---
+
+Case 4: Linear Regression
+
+Given:
+
+Mean size = 2000 sqft
+
+Mean price = $300,000
+
+r = 0.8
+
+Assume Std Dev Size = 500, Std Dev Price = $60,000
+
+
+Step 1: Regression Equation
+
+b = r \cdot \frac{s_y}{s_x} = 0.8 \cdot \frac{60000}{500} = 0.8 \cdot 120 = 96 \\
+a = \bar{y} - b\bar{x} = 300,000 - 96 \cdot 2000 = 300,000 - 192,000 = 108,000 \\
+\text{Regression line: } \hat{y} = 108,000 + 96x
+
+Step 2: Interpretation
+
+Slope (96): Each additional sqft adds $96.
+
+Intercept (108,000): Theoretically the price for 0 sqft, not meaningful here.
+
+
+Step 3: Prediction
+
+x = 2500 \Rightarrow \hat{y} = 108,000 + 96(2500) = 108,000 + 240,000 = \boxed{\$348,000}
+
+Step 4: Limitations
+
+Model assumes linearity and constant variance.
+
+House prices are affected by more than just size (location, amenities).
+
+
+Recommendations
+
+Add more variables: neighborhood, age of house.
+
+Use multiple regression for better accuracy.
+
+
+
+---
+
+Case 5: Regression with Real Salary Data
+
+Assume Extracted Sample (from Kaggle):
+
+Experience (yrs)	Salary ($)
+
+1	45,000
+3	55,000
+5	65,000
+7	75,000
+9	85,000
+
+
+Step 1: Linear Regression
+
+Mean x = 5, Mean y = 65,000
+
+Slope (b) = (85,000 - 45,000)/(9 - 1) = 40,000 / 8 = 5,000
+
+Intercept (a) = 65,000 - 5,000×5 = 40,000
+
+Equation: 
+
+
+Step 2: Interpretation
+
+Slope (5,000): Each year adds ~$5,000 salary.
+
+Intercept: Entry-level salary = $40,000.
+
+
+Step 3: Recommendations
+
+Base entry salary = $40,000 is competitive?
+
+Ensure raises align with $5,000/year trend.
+
+Limitations: Other factors (education, skills) not included.
+
+
+
+---
+
+✅ Final Summary
+
+Case	Method Used	Conclusion Summary
+
+1	Two-sample z-test	Campaign B performs better
+2	Chi-Square	No strong association, needs wider data
+3	One-Way ANOVA	Method 3 most effective
+4	Linear Regression	Size affects price significantly
+5	Linear Regression	Experience positively affects salary
